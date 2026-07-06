@@ -34,11 +34,11 @@ class tools:
             json.dump(tasks, f, default=str)
         print("Task deleted.")
 
-    def mark(self, status, ID):
+    def mark(self, ID, status):
         with open("tasks.json", "r") as f:
             tasks = json.load(f)
         status = str(status)
-        if status not in ("done", "in-progress"): return
+        if status not in ("done", "in-progress" , "todo"): return
         tasks[str(ID)]["status"] = status
         with open("tasks.json", "w") as f:
             json.dump(tasks, f, default=str)
