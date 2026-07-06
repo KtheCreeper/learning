@@ -8,6 +8,7 @@ class tools:
             tasks = json.load(f)
         with open("ids.txt", "r") as IDs:
             currentID = int(IDs.read())
+        taskName, taskDesc = str(taskName), str(taskDesc)
         currentID += 1
         tasks[currentID] = {"name": taskName, "description": taskDesc, "status": "todo", "createdAt": datetime.datetime.now(), "updatedAt": datetime.datetime.now()}
         with open("tasks.json", "w") as f:
@@ -19,6 +20,7 @@ class tools:
     def update(self, ID, taskName, taskDesc):
         with open("tasks.json", "r") as f:
             tasks = json.load(f)
+        taskName, taskDesc = str(taskName), str(taskDesc)
         tasks[str(ID)] = {"name": taskName, "description": taskDesc,  "status": tasks[str(ID)]["status"], "createdAt": tasks[str(ID)]["createdAt"],"updatedAt": datetime.datetime.now()}
         with open("tasks.json", "w") as f:
             json.dump(tasks, f, default=str)
@@ -35,6 +37,7 @@ class tools:
     def mark(self, status, ID):
         with open("tasks.json", "r") as f:
             tasks = json.load(f)
+        status = str(status)
         if status not in ("done", "in-progress"): return
         tasks[str(ID)]["status"] = status
         with open("tasks.json", "w") as f:
